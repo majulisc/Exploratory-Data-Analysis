@@ -18,7 +18,7 @@ print("nome das classes ( variaveis alvo)", target_names)
 print("formato dos dados (x) : ", x.shape)
 
 #DataFrame via pandas as pn
-df_iris= pd.DataFrame (X, columns+ feature_names)
+df_iris= pd.DataFrame (x, columns = feature_names)
 df_iris['target'] = y
 
 df_iris ['species'] = df_iris['target'].map({0: target_names[0],
