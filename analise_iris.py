@@ -29,4 +29,8 @@ df_iris ['species'] = df_iris['target'].map({0: target_names[0],
 #print(df_iris.tail())
 #print(df_iris.info())
 #print(df_iris.species.unique())
-print(df_iris.describe().transpose())
+#print(df_iris.describe().transpose())
+
+setosa = df_iris.loc[df_iris['species'] == 'setosa']
+versicolor = df_iris.loc[df_iris['species'] == 'versicolor']
+virginica = df_iris.loc[df_iris['species'] == 'virginica']
