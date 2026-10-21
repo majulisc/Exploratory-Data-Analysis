@@ -1,6 +1,6 @@
 from sklearn.datasets import load_iris
 import pandas as np
-import spicy.stats as stats
+import scipy.stats as stats
 import matplotlib as plt
 import seaborn as sns 
 import numpy as np
