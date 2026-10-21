@@ -39,4 +39,7 @@ setosa = df_iris.loc[df_iris['species'] == 'setosa']
 #print("--------------------------------------------------------------------------------------------------")
 #print(versicolor.tail())
 
-print(train_test_split(setosa,test_size=10))
+train_setosa,test_setosa=train_test_split(setosa,test_size=10)
+print(train_setosa)
+print("---------------------------------------------------------------------------------")
+print(test_setosa)
