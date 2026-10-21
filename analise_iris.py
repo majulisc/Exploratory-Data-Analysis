@@ -33,8 +33,8 @@ df_iris ['species'] = df_iris['target'].map({0: target_names[0],
 #print(df_iris.describe().transpose())
 
 setosa = df_iris.loc[df_iris['species'] == 'setosa']
-#versicolor = df_iris.loc[df_iris['species'] == 'versicolor']
-#virginica = df_iris.loc[df_iris['species'] == 'virginica']
+versicolor = df_iris.loc[df_iris['species'] == 'versicolor']
+virginica = df_iris.loc[df_iris['species'] == 'virginica']
 #print(setosa.head())
 #print("--------------------------------------------------------------------------------------------------")
 #print(versicolor.tail())
@@ -43,3 +43,16 @@ train_setosa,test_setosa=train_test_split(setosa,test_size=10,random_state=42)
 print(train_setosa)
 print("---------------------------------------------------------------------------------")
 print(test_setosa)
+print("//////////////////////////////////////////////////////////////////////////////////")
+
+train_versicolor,test_versicolor=train_test_split(versicolor,test_size=10,random_state=42)
+print(train_versicolor)
+print("---------------------------------------------------------------------------------")
+print(test_versicolor)
+print("//////////////////////////////////////////////////////////////////////////////////")
+
+train_virginica,test_virginica=train_test_split(virginica,test_size=10,random_state=42)
+print(train_virginica)
+print("---------------------------------------------------------------------------------")
+print(test_virginica)
+
