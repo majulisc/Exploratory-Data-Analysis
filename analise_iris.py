@@ -34,3 +34,6 @@ df_iris ['species'] = df_iris['target'].map({0: target_names[0],
 setosa = df_iris.loc[df_iris['species'] == 'setosa']
 versicolor = df_iris.loc[df_iris['species'] == 'versicolor']
 virginica = df_iris.loc[df_iris['species'] == 'virginica']
+print(setosa.head())
+print("--------------------------------------------------------------------------------------------------")
+print(versicolor.tail())
