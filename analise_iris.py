@@ -1,5 +1,6 @@
 from sklearn.datasets import load_iris
 import pandas as np
+import pandas as pd
 import scipy.stats as stats
 import matplotlib as plt
 import seaborn as sns 
