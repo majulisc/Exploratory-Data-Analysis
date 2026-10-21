@@ -24,6 +24,7 @@ df_iris['target'] = y
 df_iris ['species'] = df_iris['target'].map({0: target_names[0],
                                              1: target_names[1],
                                              2: target_names[2]})
-print("\nPrimeiras linhas do DataFrame:")
-print(df_iris.head())
-print(df_iris.tail())
+#print("\nPrimeiras linhas do DataFrame:")
+#print(df_iris.head())
+#print(df_iris.tail())
+df_iris.info()
