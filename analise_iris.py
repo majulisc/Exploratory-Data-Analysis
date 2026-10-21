@@ -12,9 +12,9 @@ y = iris.target
 features_names = iris.feature_names 
 target_names = iris.target_names
 
-printf("nomes das features ( ou variaveis de entrada do iris)", feature_names)
-printf("nome das classes ( variaveis alvo)", target_names)
-printf("formato dos dados (x) : ", x.shape)
+print("nomes das features ( ou variaveis de entrada do iris)", feature_names)
+print("nome das classes ( variaveis alvo)", target_names)
+print("formato dos dados (x) : ", x.shape)
 
 #DataFrame via pandas as pn
 df_iris= pd.DataFrame (X, columns+ feature_names)
