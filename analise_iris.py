@@ -9,15 +9,15 @@ iris = load_iris()
 x = iris.data 
 y = iris.target
 
-features_names = iris.features_names 
+features_names = iris.feature_names 
 target_names = iris.target_names
 
-printf("nomes das features ( ou variaveis de entrada do iris)", features_names)
+printf("nomes das features ( ou variaveis de entrada do iris)", feature_names)
 printf("nome das classes ( variaveis alvo)", target_names)
 printf("formato dos dados (x) : ", x.shape)
 
 #DataFrame via pandas as pn
-df_iris= pd.DataFrame (X, columns+ features_names)
+df_iris= pd.DataFrame (X, columns+ feature_names)
 df_iris['target'] = y
 
 df_iris ['species'] = df_iris['target'].map({0: target_names[0],
