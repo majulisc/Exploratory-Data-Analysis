@@ -27,4 +27,5 @@ df_iris ['species'] = df_iris['target'].map({0: target_names[0],
 #print("\nPrimeiras linhas do DataFrame:")
 #print(df_iris.head())
 #print(df_iris.tail())
-df_iris.info()
+#df_iris.info()
+df_iris.species.unique()
