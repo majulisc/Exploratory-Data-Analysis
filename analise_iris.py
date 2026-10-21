@@ -5,6 +5,7 @@ import scipy.stats as stats
 import matplotlib as plt
 import seaborn as sns 
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 iris = load_iris()
 x = iris.data 
@@ -37,3 +38,5 @@ virginica = df_iris.loc[df_iris['species'] == 'virginica']
 print(setosa.head())
 print("--------------------------------------------------------------------------------------------------")
 print(versicolor.tail())
+
+train_test_split(setosa,test_size=10)
