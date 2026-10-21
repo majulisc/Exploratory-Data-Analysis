@@ -9,7 +9,7 @@ iris = load_iris()
 x = iris.data 
 y = iris.target
 
-features_names = iris.feature_names 
+feature_names = iris.feature_names 
 target_names = iris.target_names
 
 print("nomes das features ( ou variaveis de entrada do iris)", feature_names)
