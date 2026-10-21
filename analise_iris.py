@@ -5,7 +5,7 @@ import matplotlib as plt
 import seaborn as sns 
 import numpy as np
 
-iris = load_iris
+iris = load_iris()
 x = iris.data 
 y = iris.target
 
