@@ -39,8 +39,8 @@ virginica = df_iris.loc[df_iris['species'] == 'virginica']
 #print("--------------------------------------------------------------------------------------------------")
 #print(versicolor.tail())
 
-train_setosa,test_setosa=train_test_split(setosa,test_size=10,random_state=42)
-print(train_setosa)
+#train_setosa,test_setosa=train_test_split(setosa,test_size=10,random_state=42)
+''''print(train_setosa)
 print("---------------------------------------------------------------------------------")
 print(test_setosa)
 print("//////////////////////////////////////////////////////////////////////////////////")
@@ -51,8 +51,11 @@ print("-------------------------------------------------------------------------
 print(test_versicolor)
 print("//////////////////////////////////////////////////////////////////////////////////")
 
-train_virginica,test_virginica=train_test_split(virginica,test_size=10,random_state=42)
-print(train_virginica)
-print("---------------------------------------------------------------------------------")
-print(test_virginica)
+#train_virginica,test_virginica=train_test_split(virginica,test_size=10,random_state=42)
+#print(train_virginica)
+#print("---------------------------------------------------------------------------------")
+#print(test_virginica)'''
+
+data = pd.concat([train_setosa,train_versicolor,train_virginica])
+print(data.info)
 
