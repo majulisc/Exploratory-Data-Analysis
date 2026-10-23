@@ -1,9 +1,8 @@
 from sklearn.datasets import load_iris
-import pandas as np
 import pandas as pd
 import scipy.stats as stats
-import matplotlib as plt
-import seaborn as sns 
+import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
 from sklearn.model_selection import train_test_split
 from tabulate import tabulate
@@ -62,5 +61,14 @@ train_versicolor,test_versicolor=train_test_split(versicolor,test_size=10,random
 train_virginica,test_virginica=train_test_split(virginica,test_size=10,random_state=42)
 
 data = pd.concat([train_setosa,train_versicolor,train_virginica])
-print(data.info)
+'''
+data.info()
+'''
+
+print(data.describe().transpose())
+
+#grafico
+data.boxplot(grid = False, figsize= (10,8))
+plt.title("Boxplot - Iris Flower data")
+plt.show()
 
