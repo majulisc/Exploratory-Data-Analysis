@@ -72,3 +72,5 @@ data.boxplot(grid = False, figsize= (10,8))
 plt.title("Boxplot - Iris Flower data")
 plt.show()
 
+data.hist(grid=false,figsize=(10,10))
+plt.show
