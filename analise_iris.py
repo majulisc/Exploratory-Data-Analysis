@@ -56,6 +56,10 @@ print("/////////////////////////////////////////////////////////////////////////
 #print("---------------------------------------------------------------------------------")
 #print(test_virginica)'''
 
+train_setosa,test_setosa=train_test_split(setosa,test_size=10,random_state=42)
+train_versicolor,test_versicolor=train_test_split(versicolor,test_size=10,random_state=42)
+train_virginica,test_virginica=train_test_split(virginica,test_size=10,random_state=42)
+
 data = pd.concat([train_setosa,train_versicolor,train_virginica])
 print(data.info)
 
