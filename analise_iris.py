@@ -6,6 +6,7 @@ import matplotlib as plt
 import seaborn as sns 
 import numpy as np
 from sklearn.model_selection import train_test_split
+from tabulate import tabulate
 
 iris = load_iris()
 x = iris.data 
