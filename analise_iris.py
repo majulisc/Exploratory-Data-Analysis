@@ -71,7 +71,34 @@ print(data.describe().transpose())
 '''data.boxplot(grid = False, figsize= (10,8))
 plt.title("Boxplot - Iris Flower data")
 plt.show()
-'''
+
 
 data.hist(grid=False,figsize=(10,10))
+plt.show()'''
+
+
+
+#print(data.columns) # estou usando para rememorar o nome das colunas
+#cheking the data distribution
+sns.histplot(
+    data=data,
+    x='sepal length (cm)',
+    stat='density',
+    kde=False
+)
+
+x = np.linspace(
+    data['sepal length (cm)'].min(),
+    data['sepal length (cm)'].max(),
+    100
+)
+
+media = data['sepal length (cm)'].mean()
+desvio = data['sepal length (cm)'].std()
+
+plt.plot(x, stats.norm.pdf(x, media, desvio))
 plt.show()
+
+plt.figure(figsize=(10,8))
+sns.histplot(data['sepal length'], fit=stats.norm, kde=False)
+plt.show
