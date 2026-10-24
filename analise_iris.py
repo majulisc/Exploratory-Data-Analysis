@@ -80,7 +80,8 @@ plt.show()'''
 
 #print(data.columns) # estou usando para rememorar o nome das colunas
 #cheking the data distribution
-sns.histplot(
+#analisando a distribuição normal esperada com histplot
+'''sns.histplot(
     data=data,
     x='sepal length (cm)',
     stat='density',
@@ -101,4 +102,12 @@ plt.show()
 
 plt.figure(figsize=(10,8))
 sns.histplot(data['sepal length'], fit=stats.norm, kde=False)
-plt.show
+plt.show'''
+#outra maneira de fazer usando displot
+plt.figure(figsize=(10,8))
+coluna = data['sepal length (cm)']
+grafico = sns.displot(data=data,x='sepal length (cm)',stat='density',kde=False)
+x = np.linspace(coluna.min(), coluna.max(), 100)
+grafico.ax.plot(x,stats.norm.pdf(x, coluna.mean(), coluna.std()),label='Distribuição normal')
+grafico.ax.legend()
+plt.show()
