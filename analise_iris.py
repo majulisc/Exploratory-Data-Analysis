@@ -111,3 +111,14 @@ x = np.linspace(coluna.min(), coluna.max(), 100)
 grafico.ax.plot(x,stats.norm.pdf(x, coluna.mean(), coluna.std()),label='Distribuição normal')
 grafico.ax.legend()
 plt.show()
+
+#teste estatistico
+shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)'])
+print("O teste estatistico shapiro é :" , shapiro_p)
+
+#comparar  o valor de p com o nivel de significancia pre estabelecido
+
+if shapiro_p > 0.05:
+    print(" Data is normal")
+else:
+    print("Data  not normal")
