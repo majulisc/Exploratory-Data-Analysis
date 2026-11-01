@@ -104,7 +104,7 @@ plt.figure(figsize=(10,8))
 sns.histplot(data['sepal length'], fit=stats.norm, kde=False)
 plt.show'''
 #outra maneira de fazer usando displot
-plt.figure(figsize=(10,8))
+plt .figure(figsize=(10,8))
 coluna = data['sepal length (cm)']
 grafico = sns.displot(data=data,x='sepal length (cm)',stat='density',kde=False)
 x = np.linspace(coluna.min(), coluna.max(), 100)
@@ -114,11 +114,16 @@ plt.show()
 
 #teste estatistico
 shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)'])
-print("O teste estatistico shapiro é :" , shapiro_p)
+#print("O teste estatistico shapiro é :" , shapiro_p)
 
 #comparar  o valor de p com o nivel de significancia pre estabelecido
+#o P representa o valor que é comparado ao alpha para entender se a amostra é normal ou nao
 
 if shapiro_p > 0.05:
-    print(" Data is normal")
+    
+    #imprimindo o nivel de confiança
+    print("With " + str( 100 - 100* 0.05) + "% of confience, we have NO evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
+    #definir o nivel de confiança e se aceito a hipotese nula 
+  
 else:
-    print("Data  not normal")
+    print("With " + str( 100 - 100* 0.05) + "% of confience, we have  evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
