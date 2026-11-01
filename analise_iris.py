@@ -6,7 +6,9 @@ import seaborn as sns
 import numpy as np
 from sklearn.model_selection import train_test_split
 from tabulate import tabulate
-
+# para instalar o backend interativo
+import matplotlib
+matplotlib.use('TkAgg')
 alfa = 0.05
 
 iris = load_iris()
@@ -83,7 +85,7 @@ plt.show()'''
 #print(data.columns) # estou usando para rememorar o nome das colunas
 #cheking the data distribution
 #analisando a distribuição normal esperada com histplot
-sns.histplot(
+"""sns.histplot(
     data=data,
     x='sepal length (cm)',
     stat='density',
@@ -102,7 +104,7 @@ desvio = data['sepal length (cm)'].std()
 plt.plot(x, stats.norm.pdf(x, media, desvio))
 plt.show()
 
-
+"""
 #teste estatistico
 shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)'])
 #print("O teste estatistico shapiro é :" , shapiro_p)
@@ -111,28 +113,31 @@ shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)'])
 #comparar  o valor de p com o nivel de significancia pre estabelecido
 #o P representa o valor que é comparado ao alpha para entender se a amostra é normal ou nao
 
-
 if shapiro_p > alfa:
-    auxiliar = "Dist. Normal (p=" + "{:.3}".format(shapiro_p)+ ")"
-    
-    #imprimindo o nivel de confiança
-    print("With " + str( 100 - 100* alfa ) + "% of confience, we have NO evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
-    #definir o nivel de confiança e se aceito a hipotese nula 
-  
+    auxiliar = "Dist. Normal (p=" + "{:.3}".format(shapiro_p) + ")"
+    print(...)
 else:
-    auxiliar = "Dist. Normal (p=" + "{:.3}".format(shapiro_p)+ ")"
-    print("With " + str( 100 - 100* alfa) + "% of confience, we have  evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
+    auxiliar = "Não normal (p=" + "{:.3}".format(shapiro_p) + ")"
+    print(...)
 
-plt.figure(figsize=(10,8))
-sns.histplot(x, stat='density', kde=False, label= auxiliar)
-plt.legend()
-plt.show
-#outra maneira de fazer usando displot
-plt .figure(figsize=(10,8))
 coluna = data['sepal length (cm)']
-grafico = sns.displot(data=data,x='sepal length (cm)',stat='density',kde=False)
-x = np.linspace(coluna.min(), coluna.max(), 100)
-grafico.ax.plot(x,stats.norm.pdf(x, coluna.mean(), coluna.std()),label='Distribuição normal')
+pontos_curva = np.linspace(coluna.min(), coluna.max(), 100)
+curva = stats.norm.pdf(pontos_curva, coluna.mean(), coluna.std())
+
+# Gráfico 1: histplot
+plt.figure(figsize=(10, 8))
+sns.histplot(coluna, stat='density', kde=False, label=auxiliar)
+plt.plot(pontos_curva, curva, label='Distribuição normal')
+plt.legend()
+plt.savefig('histograma_histplot.png', dpi=150, bbox_inches='tight')
+
+# Gráfico 2: displot
+grafico = sns.displot(data=data, x='sepal length (cm)', stat='density', kde=False,
+                      height=8, aspect=1.25)
+grafico.ax.plot(pontos_curva, curva, label='Distribuição normal')
 grafico.ax.legend()
-plt.show()
+grafico.savefig('histograma_displot.png', dpi=150, bbox_inches='tight')
+
+plt.show()   # um único show no final, abre as duas figuras
+
 
