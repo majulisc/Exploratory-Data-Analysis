@@ -7,6 +7,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from tabulate import tabulate
 
+alfa = 0.05
+
 iris = load_iris()
 x = iris.data 
 y = iris.target
@@ -81,7 +83,7 @@ plt.show()'''
 #print(data.columns) # estou usando para rememorar o nome das colunas
 #cheking the data distribution
 #analisando a distribuição normal esperada com histplot
-'''sns.histplot(
+sns.histplot(
     data=data,
     x='sepal length (cm)',
     stat='density',
@@ -100,9 +102,31 @@ desvio = data['sepal length (cm)'].std()
 plt.plot(x, stats.norm.pdf(x, media, desvio))
 plt.show()
 
+
+#teste estatistico
+shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)'])
+#print("O teste estatistico shapiro é :" , shapiro_p)
+
+# vou criar uma variavel para armazenar o alpha de modo que eu nao precise mudar o alfa de acordo com o valor que eu tenho interesse
+#comparar  o valor de p com o nivel de significancia pre estabelecido
+#o P representa o valor que é comparado ao alpha para entender se a amostra é normal ou nao
+
+
+if shapiro_p > alfa:
+    auxiliar = "Dist. Normal (p=" + "{:.3}".format(shapiro_p)+ ")"
+    
+    #imprimindo o nivel de confiança
+    print("With " + str( 100 - 100* alfa ) + "% of confience, we have NO evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
+    #definir o nivel de confiança e se aceito a hipotese nula 
+  
+else:
+    auxiliar = "Dist. Normal (p=" + "{:.3}".format(shapiro_p)+ ")"
+    print("With " + str( 100 - 100* alfa) + "% of confience, we have  evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
+
 plt.figure(figsize=(10,8))
-sns.histplot(data['sepal length'], fit=stats.norm, kde=False)
-plt.show'''
+sns.histplot(x, stat='density', kde=False, label= auxiliar)
+plt.legend()
+plt.show
 #outra maneira de fazer usando displot
 plt .figure(figsize=(10,8))
 coluna = data['sepal length (cm)']
@@ -112,18 +136,3 @@ grafico.ax.plot(x,stats.norm.pdf(x, coluna.mean(), coluna.std()),label='Distribu
 grafico.ax.legend()
 plt.show()
 
-#teste estatistico
-shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)'])
-#print("O teste estatistico shapiro é :" , shapiro_p)
-
-#comparar  o valor de p com o nivel de significancia pre estabelecido
-#o P representa o valor que é comparado ao alpha para entender se a amostra é normal ou nao
-
-if shapiro_p > 0.05:
-    
-    #imprimindo o nivel de confiança
-    print("With " + str( 100 - 100* 0.05) + "% of confience, we have NO evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
-    #definir o nivel de confiança e se aceito a hipotese nula 
-  
-else:
-    print("With " + str( 100 - 100* 0.05) + "% of confience, we have  evidence to reject the Normality hypotheses of the data " + " according to the Shapiro-Wilk test (p - value = " + "{:.3})".format(shapiro_p)+")")
