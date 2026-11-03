@@ -105,14 +105,17 @@ plt.plot(x, stats.norm.pdf(x, media, desvio))
 plt.show()
 
 """
-#teste estatistico
-shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)'])
+
+"""
+#teste estatistico apenas para as sepalas
+shapiro_stat, shapiro_p = stats.shapiro(data['sepal length (cm)']) #diz qual coluna sofre o teste no caso ->sepal length (cm)
 #print("O teste estatistico shapiro é :" , shapiro_p)
 
 # vou criar uma variavel para armazenar o alpha de modo que eu nao precise mudar o alfa de acordo com o valor que eu tenho interesse
 #comparar  o valor de p com o nivel de significancia pre estabelecido
 #o P representa o valor que é comparado ao alpha para entender se a amostra é normal ou nao
 
+#basicamente estou marcando no grafico se é normal ou nao normal
 if shapiro_p > alfa:
     auxiliar = "Dist. Normal (p=" + "{:.3}".format(shapiro_p) + ")"
     print(...)
@@ -124,7 +127,7 @@ coluna = data['sepal length (cm)']
 pontos_curva = np.linspace(coluna.min(), coluna.max(), 100)
 curva = stats.norm.pdf(pontos_curva, coluna.mean(), coluna.std())
 
-# Gráfico 1: histplot
+# Gráfico 1: histplot apenas para as sepalas
 plt.figure(figsize=(10, 8))
 sns.histplot(coluna, stat='density', kde=False, label=auxiliar)
 plt.plot(pontos_curva, curva, label='Distribuição normal')
@@ -138,6 +141,46 @@ grafico.ax.plot(pontos_curva, curva, label='Distribuição normal')
 grafico.ax.legend()
 grafico.savefig('histograma_displot.png', dpi=150, bbox_inches='tight')
 
-plt.show()   # um único show no final, abre as duas figuras
+plt.show()   
+"""
+
+#Loop to iterative over all the characteristics of the iris flower
+column_names = data.columns
+for i in range(len(column_names)-1):
+    #teste estatistico para  mais variaveis
+    shapiro_stat, shapiro_p = stats.shapiro(data[column_names[i]]) #diz qual coluna sofre o teste no caso ->sepal length (cm)
+    #print("O teste estatistico shapiro é :" , shapiro_p)
+
+    # vou criar uma variavel para armazenar o alpha de modo que eu nao precise mudar o alfa de acordo com o valor que eu tenho interesse
+    #comparar  o valor de p com o nivel de significancia pre estabelecido
+    #o P representa o valor que é comparado ao alpha para entender se a amostra é normal ou nao
+
+    if shapiro_p > alfa:
+        auxiliar = "Dist. Normal (p=" + "{:.3}".format(shapiro_p) + ")"
+        print(...)
+    else:
+        auxiliar = "Não normal (p=" + "{:.3}".format(shapiro_p) + ")"
+        print(...)
+
+    coluna = data[column_names[i]]
+    pontos_curva = np.linspace(coluna.min(), coluna.max(), 100)
+    curva = stats.norm.pdf(pontos_curva, coluna.mean(), coluna.std())
+
+    # Gráfico 1: histplot apenas para as sepalas
+    plt.figure(figsize=(10, 8))
+    sns.histplot(coluna, stat='density', kde=False, label=auxiliar)
+    plt.plot(pontos_curva, curva, label='Distribuição normal')
+    plt.legend()
+    plt.savefig('histograma_histplot.png', dpi=150, bbox_inches='tight')
+
+    # Gráfico 2: displot
+    grafico = sns.displot(data=data, x=column_names[i], stat='density', kde=False,
+                        height=8, aspect=1.25)
+    grafico.ax.plot(pontos_curva, curva, label='Distribuição normal')
+    #antes do plt.show() para mostrar na legenda
+    grafico.ax.legend()
+    grafico.savefig('histograma_displot.png', dpi=150, bbox_inches='tight')
+
+    plt.show()   
 
 
